@@ -1,0 +1,39 @@
+Format: 1.8
+Date: Wed, 10 Oct 2012 00:54:13 +1100
+Source: mysql-workbench
+Binary: mysql-workbench mysql-workbench-data
+Architecture: source amd64 all
+Version: 5.2.40+dfsg-2
+Distribution: unstable
+Urgency: medium
+Maintainer: Dmitry Smirnov <onlyjob@member.fsf.org>
+Changed-By: Dmitry Smirnov <onlyjob@member.fsf.org>
+Description: 
+ mysql-workbench - MySQL Workbench - a visual database modeling, administration and
+ mysql-workbench-data - MySQL Workbench -- architecture independent data
+Closes: 675336 682691
+Changes: 
+ mysql-workbench (5.2.40+dfsg-2) unstable; urgency=medium
+ .
+   * Build-Depends on libtinyxml-dev (>= 2.6.2)
+     to avoid FTBFS with older versions (Closes: #675336)
+   * new patch to fix freeze on application exit (Closes: #682691).
+   * debian/watch update to reflect mirror changes.
+   * debian/rules to gracefully handle stripping if -dbg
+     package is (un-)commented in debian/control.
+   * xz compression for binary packages.
+Checksums-Sha1: 
+ d514b1d726eccebc30d63ea042c9929224711571 1509 mysql-workbench_5.2.40+dfsg-2.dsc
+ 58768fdffc746564437bbbcef2e2a2d806b9ec5d 18828 mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+ e571b6d7881add9370e51fb09ef849d9f9870b8f 7618980 mysql-workbench_5.2.40+dfsg-2_amd64.deb
+ 874757cf7825e5d223580e5c8820ba2f011eaa99 6799184 mysql-workbench-data_5.2.40+dfsg-2_all.deb
+Checksums-Sha256: 
+ a414bfac149e67b12b3172d1154a359cd1a26397b558c97eacda373025ea131e 1509 mysql-workbench_5.2.40+dfsg-2.dsc
+ e1c5d9892d3dfebb7bbbd1f6ff1c08a0f06f6094aa57cee9e4d157273c08f370 18828 mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+ 12a0b72308d92d32486b1175f18f85c59973015d65212d2f3ca335717650bfe6 7618980 mysql-workbench_5.2.40+dfsg-2_amd64.deb
+ af7fd71c905c80e9474cd4809335c0d66a4bd7a4742c7203163cf031cf0aaa80 6799184 mysql-workbench-data_5.2.40+dfsg-2_all.deb
+Files: 
+ d5d00d19a032fd92f2b65d352fd5eb3e 1509 database optional mysql-workbench_5.2.40+dfsg-2.dsc
+ 19f3b570b7a27e38d9f98fa6e716ad33 18828 database optional mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+ 7fbb0b843c965cb70afea75116a7ea9e 7618980 database optional mysql-workbench_5.2.40+dfsg-2_amd64.deb
+ bc4f506d37c284b7a06490d79c6355a9 6799184 database optional mysql-workbench-data_5.2.40+dfsg-2_all.deb

@@ -1,0 +1,1298 @@
+jon@vriska:~$ mkdir mysql-workbench
+jon@vriska:~$ cd mysql-workbench/
+jon@vriska:~/mysql-workbench$ wget http://ftp.de.debian.org/debian/pool/main/m/mysql-workbench/mysql-workbench_5.2.40+dfsg-2.dsc http://ftp.de.debian.org/debian/pool/main/m/mysql-workbench/mysql-workbench_5.2.40+dfsg.orig.tar.xz http://ftp.de.debian.org/debian/pool/main/m/mysql-workbench/mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+--2013-02-14 15:18:45--  http://ftp.de.debian.org/debian/pool/main/m/mysql-workbench/mysql-workbench_5.2.40+dfsg-2.dsc
+Resolving ftp.de.debian.org... 141.76.2.4
+Connecting to ftp.de.debian.org|141.76.2.4|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2149 (2.1K)
+Saving to: “mysql-workbench_5.2.40+dfsg-2.dsc”
+
+100%[======================================>] 2,149       --.-K/s   in 0s      
+
+2013-02-14 15:18:45 (547 MB/s) - “mysql-workbench_5.2.40+dfsg-2.dsc” saved [2149/2149]
+
+--2013-02-14 15:18:45--  http://ftp.de.debian.org/debian/pool/main/m/mysql-workbench/mysql-workbench_5.2.40+dfsg.orig.tar.xz
+Reusing existing connection to ftp.de.debian.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 11188656 (11M) [application/x-tar]
+Saving to: “mysql-workbench_5.2.40+dfsg.orig.tar.xz”
+
+100%[======================================>] 11,188,656  1.95M/s   in 10s     
+
+2013-02-14 15:18:56 (1.07 MB/s) - “mysql-workbench_5.2.40+dfsg.orig.tar.xz” saved [11188656/11188656]
+
+--2013-02-14 15:18:56--  http://ftp.de.debian.org/debian/pool/main/m/mysql-workbench/mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+Reusing existing connection to ftp.de.debian.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 18844 (18K) [application/x-tar]
+Saving to: “mysql-workbench_5.2.40+dfsg-2.debian.tar.xz”
+
+100%[======================================>] 18,844      --.-K/s   in 0.003s  
+
+2013-02-14 15:18:56 (5.26 MB/s) - “mysql-workbench_5.2.40+dfsg-2.debian.tar.xz” saved [18844/18844]
+
+FINISHED --2013-02-14 15:18:56--
+Downloaded: 3 files, 11M in 10s (1.07 MB/s)
+jon@vriska:~/mysql-workbench$ ls 
+mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+mysql-workbench_5.2.40+dfsg-2.dsc
+mysql-workbench_5.2.40+dfsg.orig.tar.xz
+jon@vriska:~/mysql-workbench$ dpkg-source -x *dsc
+gpgv: keyblock resource `/home/jon/.gnupg/trustedkeys.gpg': file open error
+gpgv: Signature made Thu 11 Oct 2012 07:58:07 AM EDT using RSA key ID EED3BC0D
+gpgv: Can't check signature: public key not found
+dpkg-source: warning: failed to verify signature on ./mysql-workbench_5.2.40+dfsg-2.dsc
+dpkg-source: info: extracting mysql-workbench in mysql-workbench-5.2.40+dfsg
+dpkg-source: info: unpacking mysql-workbench_5.2.40+dfsg.orig.tar.xz
+dpkg-source: info: unpacking mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+dpkg-source: info: applying path_to_ifconfig.patch
+dpkg-source: info: applying automake-1.11.2.patch
+dpkg-source: info: applying launcher.patch
+dpkg-source: info: applying disable_scintillaNET.patch
+dpkg-source: info: applying unbundle_ctemplate.patch
+dpkg-source: info: applying unbundle_tinyxml.patch
+dpkg-source: info: applying unbundle_connector-python.patch
+dpkg-source: info: applying fix-app-exit.patch
+jon@vriska:~/mysql-workbench$ cd */
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ dpkg-checkbuilddeps 
+dpkg-checkbuilddeps: Unmet build dependencies: debhelper (>= 9) dh-autoreconf bison flex swig doxygen libboost-dev libcairo2-dev libctemplate-dev libgl1-mesa-dev libglib2.0-dev libgnome-keyring-dev libgtkmm-2.4-dev liblua5.1-0-dev libpng12-dev libmysqlclient-dev libpcre3-dev libpixman-1-dev libsqlite3-dev libtinyxml-dev (>= 2.6.2) libxml2-dev libzip-dev python-all-dev uuid-dev
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ sudo apt-get install debhelper dh-autoreconf bison flex swig doxygen libboost-dev libcairo2-dev libctemplate-dev libgl1-mesa-dev libglib2.0-dev libgnome-keyring-dev libgtkmm-2.4-dev liblua5.1-0-dev libpng12-dev libmysqlclient-dev libpcre3-dev libpixman-1-dev libsqlite3-dev libtinyxml-dev libxml2-dev libzip-dev python-all-dev uuid-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+debhelper is already the newest version.
+The following packages were automatically installed and are no longer required:
+  python-paramiko python-pysqlite2 python-crypto
+Use 'apt-get autoremove' to remove them.
+The following extra packages will be installed:
+  autoconf automake autotools-dev libatk1.0-dev libboost1.42-dev
+  libcairomm-1.0-dev libglibmm-2.4-dev libgtk2.0-dev libncurses5-dev
+  libpango1.0-dev libpangomm-1.4-dev libpcrecpp0 libreadline-dev
+  libreadline6-dev libsigc++-2.0-dev libssl-dev libtinyxml2.5.3 libtool
+  libxcb-render-util0-dev libxcb-render0-dev libxcomposite-dev libxcursor-dev
+  libxdamage-dev libxfixes-dev libxi-dev libxrandr-dev libzip1 m4
+  mesa-common-dev python-all python-dev python2.5 python2.5-dev
+  python2.5-minimal python2.6-dev x11proto-composite-dev x11proto-damage-dev
+  x11proto-fixes-dev x11proto-randr-dev
+Suggested packages:
+  autoconf2.13 autoconf-archive gnu-standards autoconf-doc bison-doc
+  doxygen-doc doxygen-gui graphviz libboost1.42-doc libboost-date-time1.42-dev
+  libboost-filesystem1.42-dev libboost-graph-parallel1.42-dev
+  libboost-graph1.42-dev libboost-iostreams1.42-dev libboost-math1.42-dev
+  libboost-mpi1.42-dev libboost-program-options1.42-dev
+  libboost-python1.42-dev libboost-regex1.42-dev
+  libboost-serialization1.42-dev libboost-signals1.42-dev
+  libboost-system1.42-dev libboost-test1.42-dev libboost-thread1.42-dev
+  libboost-wave1.42-dev docbook-xsl default-jdk fop libcairo2-doc
+  libcairomm-1.0-doc libglib2.0-doc libglibmm-2.4-doc libgtk2.0-doc
+  libgtkmm-2.4-doc libpango1.0-doc libsigc++-2.0-doc sqlite3-doc
+  libtinyxml-doc libtool-doc automaken gfortran fortran95-compiler gcj
+  python2.5-doc python-profiler python-old-doctools binfmt-support
+  swig-examples swig-doc
+Recommended packages:
+  autopoint texlive-extra-utils libltdl-dev
+The following NEW packages will be installed:
+  autoconf automake autotools-dev bison dh-autoreconf doxygen flex
+  libatk1.0-dev libboost-dev libboost1.42-dev libcairo2-dev libcairomm-1.0-dev
+  libctemplate-dev libgl1-mesa-dev libglib2.0-dev libglibmm-2.4-dev
+  libgnome-keyring-dev libgtk2.0-dev libgtkmm-2.4-dev liblua5.1-0-dev
+  libmysqlclient-dev libncurses5-dev libpango1.0-dev libpangomm-1.4-dev
+  libpcre3-dev libpcrecpp0 libpixman-1-dev libpng12-dev libreadline-dev
+  libreadline6-dev libsigc++-2.0-dev libsqlite3-dev libssl-dev libtinyxml-dev
+  libtinyxml2.5.3 libtool libxcb-render-util0-dev libxcb-render0-dev
+  libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev
+  libxml2-dev libxrandr-dev libzip-dev libzip1 m4 mesa-common-dev python-all
+  python-all-dev python-dev python2.5 python2.5-dev python2.5-minimal
+  python2.6-dev swig uuid-dev x11proto-composite-dev x11proto-damage-dev
+  x11proto-fixes-dev x11proto-randr-dev
+0 upgraded, 62 newly installed, 0 to remove and 1 not upgraded.
+Need to get 45.4 MB of archives.
+After this operation, 203 MB of additional disk space will be used.
+Do you want to continue [Y/n]? 
+Get:1 http://mirror.cc.columbia.edu/debian/ squeeze/main m4 amd64 1.4.14-3 [291 kB]
+Get:2 http://security.debian.org/debian-security/ squeeze/updates/main libmysqlclient-dev amd64 5.1.66-0+squeeze1 [3,196 kB]
+Get:3 http://mirror.cc.columbia.edu/debian/ squeeze/main flex amd64 2.5.35-10 [332 kB]
+Get:4 http://mirror.cc.columbia.edu/debian/ squeeze/main autoconf all 2.67-2 [793 kB]
+Get:5 http://mirror.cc.columbia.edu/debian/ squeeze/main autotools-dev all 20100122.1 [71.9 kB]
+Get:6 http://mirror.cc.columbia.edu/debian/ squeeze/main automake all 1:1.11.1-1+squeeze1 [611 kB]
+Get:7 http://mirror.cc.columbia.edu/debian/ squeeze/main bison amd64 1:2.4.1.dfsg-3 [579 kB]
+Get:8 http://mirror.cc.columbia.edu/debian/ squeeze/main libtool amd64 2.2.6b-2 [524 kB]
+Get:9 http://mirror.cc.columbia.edu/debian/ squeeze/main dh-autoreconf all 2 [11.5 kB]
+Get:10 http://mirror.cc.columbia.edu/debian/ squeeze/main doxygen amd64 1.7.1-2 [2,038 kB]
+Get:11 http://mirror.cc.columbia.edu/debian/ squeeze/main libglib2.0-dev amd64 2.24.2-1 [1,273 kB]
+Get:12 http://mirror.cc.columbia.edu/debian/ squeeze/main libatk1.0-dev amd64 1.30.0-1 [129 kB]
+Get:13 http://mirror.cc.columbia.edu/debian/ squeeze/main libboost1.42-dev amd64 1.42.0-4 [6,441 kB]
+Get:14 http://mirror.cc.columbia.edu/debian/ squeeze/main libboost-dev amd64 1.42.0.1 [1,958 B]
+Get:15 http://mirror.cc.columbia.edu/debian/ squeeze/main libpng12-dev amd64 1.2.44-1+squeeze4 [273 kB]
+Get:16 http://mirror.cc.columbia.edu/debian/ squeeze/main libpixman-1-dev amd64 0.16.4-1 [263 kB]
+Get:17 http://mirror.cc.columbia.edu/debian/ squeeze/main libxcb-render0-dev amd64 1.6-1 [23.4 kB]
+Get:18 http://mirror.cc.columbia.edu/debian/ squeeze/main libxcb-render-util0-dev amd64 0.3.6-1 [9,706 B]
+Get:19 http://mirror.cc.columbia.edu/debian/ squeeze/main libcairo2-dev amd64 1.8.10-6 [620 kB]
+Get:20 http://mirror.cc.columbia.edu/debian/ squeeze/main libsigc++-2.0-dev amd64 2.2.4.2-1 [113 kB]
+Get:21 http://mirror.cc.columbia.edu/debian/ squeeze/main libcairomm-1.0-dev amd64 1.8.4-3 [117 kB]
+Get:22 http://mirror.cc.columbia.edu/debian/ squeeze/main libctemplate-dev amd64 0.97-1 [360 kB]
+Get:23 http://mirror.cc.columbia.edu/debian/ squeeze/main mesa-common-dev amd64 7.7.1-5 [2,361 kB]
+Get:24 http://mirror.cc.columbia.edu/debian/ squeeze/main libgl1-mesa-dev amd64 7.7.1-5 [24.3 kB]
+Get:25 http://mirror.cc.columbia.edu/debian/ squeeze/main libglibmm-2.4-dev amd64 2.24.2-1 [780 kB]
+Get:26 http://mirror.cc.columbia.edu/debian/ squeeze/main libgnome-keyring-dev amd64 2.30.1-1 [119 kB]
+Get:27 http://mirror.cc.columbia.edu/debian/ squeeze/main libpango1.0-dev amd64 1.28.3-1+squeeze2 [420 kB]
+Get:28 http://mirror.cc.columbia.edu/debian/ squeeze/main libxi-dev amd64 2:1.3-7 [143 kB]
+Get:29 http://mirror.cc.columbia.edu/debian/ squeeze/main x11proto-randr-dev all 1.3.1-1 [38.2 kB]
+Get:30 http://mirror.cc.columbia.edu/debian/ squeeze/main libxrandr-dev amd64 2:1.3.0-3 [35.9 kB]
+Get:31 http://mirror.cc.columbia.edu/debian/ squeeze/main x11proto-fixes-dev all 1:4.1.1-2 [15.4 kB]
+Get:32 http://mirror.cc.columbia.edu/debian/ squeeze/main libxfixes-dev amd64 1:4.0.5-1 [21.4 kB]
+Get:33 http://mirror.cc.columbia.edu/debian/ squeeze/main libxcursor-dev amd64 1:1.1.10-2 [34.5 kB]
+Get:34 http://mirror.cc.columbia.edu/debian/ squeeze/main x11proto-composite-dev all 1:0.4.1-1 [13.2 kB]
+Get:35 http://mirror.cc.columbia.edu/debian/ squeeze/main libxcomposite-dev amd64 1:0.4.2-1 [19.2 kB]
+Get:36 http://mirror.cc.columbia.edu/debian/ squeeze/main x11proto-damage-dev all 1:1.2.0-1 [10.2 kB]
+Get:37 http://mirror.cc.columbia.edu/debian/ squeeze/main libxdamage-dev amd64 1:1.1.3-1 [13.8 kB]
+Get:38 http://mirror.cc.columbia.edu/debian/ squeeze/main libgtk2.0-dev amd64 2.20.1-2 [3,656 kB]
+Get:39 http://mirror.cc.columbia.edu/debian/ squeeze/main libpangomm-1.4-dev amd64 2.26.2-1 [66.4 kB]
+Get:40 http://mirror.cc.columbia.edu/debian/ squeeze/main libgtkmm-2.4-dev amd64 1:2.20.3-1 [978 kB]
+Get:41 http://mirror.cc.columbia.edu/debian/ squeeze/main libncurses5-dev amd64 5.7+20100313-5 [1,632 kB]
+Get:42 http://mirror.cc.columbia.edu/debian/ squeeze/main libreadline6-dev amd64 6.1-3 [257 kB]
+Get:43 http://mirror.cc.columbia.edu/debian/ squeeze/main libreadline-dev amd64 6.1-3 [862 B]
+Get:44 http://mirror.cc.columbia.edu/debian/ squeeze/main liblua5.1-0-dev amd64 5.1.4-5 [123 kB]
+Get:45 http://mirror.cc.columbia.edu/debian/ squeeze/main libpcrecpp0 amd64 8.02-1.1 [108 kB]
+Get:46 http://mirror.cc.columbia.edu/debian/ squeeze/main libpcre3-dev amd64 8.02-1.1 [283 kB]
+Get:47 http://mirror.cc.columbia.edu/debian/ squeeze/main libsqlite3-dev amd64 3.7.3-1 [498 kB]
+Get:48 http://mirror.cc.columbia.edu/debian/ squeeze/main libtinyxml2.5.3 amd64 2.5.3-3 [44.4 kB]
+Get:49 http://mirror.cc.columbia.edu/debian/ squeeze/main libtinyxml-dev amd64 2.5.3-3 [64.2 kB]
+Get:50 http://mirror.cc.columbia.edu/debian/ squeeze/main libzip1 amd64 0.9.3-1 [23.8 kB]
+Get:51 http://mirror.cc.columbia.edu/debian/ squeeze/main libzip-dev amd64 0.9.3-1 [95.5 kB]
+Get:52 http://mirror.cc.columbia.edu/debian/ squeeze/main python2.5-minimal amd64 2.5.5-11 [1,307 kB]
+Get:53 http://mirror.cc.columbia.edu/debian/ squeeze/main python2.5 amd64 2.5.5-11 [3,053 kB]
+Get:54 http://mirror.cc.columbia.edu/debian/ squeeze/main python-all all 2.6.6-3+squeeze7 [886 B]
+Get:55 http://mirror.cc.columbia.edu/debian/ squeeze/main python2.6-dev amd64 2.6.6-8+b1 [4,784 kB]
+Get:56 http://mirror.cc.columbia.edu/debian/ squeeze/main python-dev all 2.6.6-3+squeeze7 [916 B]
+Get:57 http://mirror.cc.columbia.edu/debian/ squeeze/main python2.5-dev amd64 2.5.5-11 [1,886 kB]
+Get:58 http://mirror.cc.columbia.edu/debian/ squeeze/main python-all-dev all 2.6.6-3+squeeze7 [904 B]
+Get:59 http://mirror.cc.columbia.edu/debian/ squeeze/main swig amd64 1.3.40-3 [1,231 kB]
+Get:60 http://mirror.cc.columbia.edu/debian/ squeeze/main uuid-dev amd64 2.17.2-9 [73.8 kB]
+Get:61 http://security.debian.org/debian-security/ squeeze/updates/main libssl-dev amd64 0.9.8o-4squeeze14 [2,300 kB]
+Get:62 http://security.debian.org/debian-security/ squeeze/updates/main libxml2-dev amd64 2.7.8.dfsg-2+squeeze6 [830 kB]
+Fetched 45.4 MB in 12s (3,531 kB/s)                                            
+Extracting templates from packages: 100%
+Selecting previously deselected package m4.
+(Reading database ... 178289 files and directories currently installed.)
+Unpacking m4 (from .../archives/m4_1.4.14-3_amd64.deb) ...
+Selecting previously deselected package flex.
+Unpacking flex (from .../flex_2.5.35-10_amd64.deb) ...
+Selecting previously deselected package autoconf.
+Unpacking autoconf (from .../autoconf_2.67-2_all.deb) ...
+Selecting previously deselected package autotools-dev.
+Unpacking autotools-dev (from .../autotools-dev_20100122.1_all.deb) ...
+Selecting previously deselected package automake.
+Unpacking automake (from .../automake_1%3a1.11.1-1+squeeze1_all.deb) ...
+Selecting previously deselected package bison.
+Unpacking bison (from .../bison_1%3a2.4.1.dfsg-3_amd64.deb) ...
+Selecting previously deselected package libtool.
+Unpacking libtool (from .../libtool_2.2.6b-2_amd64.deb) ...
+Selecting previously deselected package dh-autoreconf.
+Unpacking dh-autoreconf (from .../dh-autoreconf_2_all.deb) ...
+Selecting previously deselected package doxygen.
+Unpacking doxygen (from .../doxygen_1.7.1-2_amd64.deb) ...
+Selecting previously deselected package libglib2.0-dev.
+Unpacking libglib2.0-dev (from .../libglib2.0-dev_2.24.2-1_amd64.deb) ...
+Selecting previously deselected package libatk1.0-dev.
+Unpacking libatk1.0-dev (from .../libatk1.0-dev_1.30.0-1_amd64.deb) ...
+Selecting previously deselected package libboost1.42-dev.
+Unpacking libboost1.42-dev (from .../libboost1.42-dev_1.42.0-4_amd64.deb) ...
+Selecting previously deselected package libboost-dev.
+Unpacking libboost-dev (from .../libboost-dev_1.42.0.1_amd64.deb) ...
+Selecting previously deselected package libpng12-dev.
+Unpacking libpng12-dev (from .../libpng12-dev_1.2.44-1+squeeze4_amd64.deb) ...
+Selecting previously deselected package libpixman-1-dev.
+Unpacking libpixman-1-dev (from .../libpixman-1-dev_0.16.4-1_amd64.deb) ...
+Selecting previously deselected package libxcb-render0-dev.
+Unpacking libxcb-render0-dev (from .../libxcb-render0-dev_1.6-1_amd64.deb) ...
+Selecting previously deselected package libxcb-render-util0-dev.
+Unpacking libxcb-render-util0-dev (from .../libxcb-render-util0-dev_0.3.6-1_amd64.deb) ...
+Selecting previously deselected package libcairo2-dev.
+Unpacking libcairo2-dev (from .../libcairo2-dev_1.8.10-6_amd64.deb) ...
+Selecting previously deselected package libsigc++-2.0-dev.
+Unpacking libsigc++-2.0-dev (from .../libsigc++-2.0-dev_2.2.4.2-1_amd64.deb) ...
+Selecting previously deselected package libcairomm-1.0-dev.
+Unpacking libcairomm-1.0-dev (from .../libcairomm-1.0-dev_1.8.4-3_amd64.deb) ...
+Selecting previously deselected package libctemplate-dev.
+Unpacking libctemplate-dev (from .../libctemplate-dev_0.97-1_amd64.deb) ...
+Selecting previously deselected package mesa-common-dev.
+Unpacking mesa-common-dev (from .../mesa-common-dev_7.7.1-5_amd64.deb) ...
+Selecting previously deselected package libgl1-mesa-dev.
+Unpacking libgl1-mesa-dev (from .../libgl1-mesa-dev_7.7.1-5_amd64.deb) ...
+Selecting previously deselected package libglibmm-2.4-dev.
+Unpacking libglibmm-2.4-dev (from .../libglibmm-2.4-dev_2.24.2-1_amd64.deb) ...
+Selecting previously deselected package libgnome-keyring-dev.
+Unpacking libgnome-keyring-dev (from .../libgnome-keyring-dev_2.30.1-1_amd64.deb) ...
+Selecting previously deselected package libpango1.0-dev.
+Unpacking libpango1.0-dev (from .../libpango1.0-dev_1.28.3-1+squeeze2_amd64.deb) ...
+Selecting previously deselected package libxi-dev.
+Unpacking libxi-dev (from .../libxi-dev_2%3a1.3-7_amd64.deb) ...
+Selecting previously deselected package x11proto-randr-dev.
+Unpacking x11proto-randr-dev (from .../x11proto-randr-dev_1.3.1-1_all.deb) ...
+Selecting previously deselected package libxrandr-dev.
+Unpacking libxrandr-dev (from .../libxrandr-dev_2%3a1.3.0-3_amd64.deb) ...
+Selecting previously deselected package x11proto-fixes-dev.
+Unpacking x11proto-fixes-dev (from .../x11proto-fixes-dev_1%3a4.1.1-2_all.deb) ...
+Selecting previously deselected package libxfixes-dev.
+Unpacking libxfixes-dev (from .../libxfixes-dev_1%3a4.0.5-1_amd64.deb) ...
+Selecting previously deselected package libxcursor-dev.
+Unpacking libxcursor-dev (from .../libxcursor-dev_1%3a1.1.10-2_amd64.deb) ...
+Selecting previously deselected package x11proto-composite-dev.
+Unpacking x11proto-composite-dev (from .../x11proto-composite-dev_1%3a0.4.1-1_all.deb) ...
+Selecting previously deselected package libxcomposite-dev.
+Unpacking libxcomposite-dev (from .../libxcomposite-dev_1%3a0.4.2-1_amd64.deb) ...
+Selecting previously deselected package x11proto-damage-dev.
+Unpacking x11proto-damage-dev (from .../x11proto-damage-dev_1%3a1.2.0-1_all.deb) ...
+Selecting previously deselected package libxdamage-dev.
+Unpacking libxdamage-dev (from .../libxdamage-dev_1%3a1.1.3-1_amd64.deb) ...
+Selecting previously deselected package libgtk2.0-dev.
+Unpacking libgtk2.0-dev (from .../libgtk2.0-dev_2.20.1-2_amd64.deb) ...
+Selecting previously deselected package libpangomm-1.4-dev.
+Unpacking libpangomm-1.4-dev (from .../libpangomm-1.4-dev_2.26.2-1_amd64.deb) ...
+Selecting previously deselected package libgtkmm-2.4-dev.
+Unpacking libgtkmm-2.4-dev (from .../libgtkmm-2.4-dev_1%3a2.20.3-1_amd64.deb) ...
+Selecting previously deselected package libncurses5-dev.
+Unpacking libncurses5-dev (from .../libncurses5-dev_5.7+20100313-5_amd64.deb) ...
+Selecting previously deselected package libreadline6-dev.
+Unpacking libreadline6-dev (from .../libreadline6-dev_6.1-3_amd64.deb) ...
+Selecting previously deselected package libreadline-dev.
+Unpacking libreadline-dev (from .../libreadline-dev_6.1-3_amd64.deb) ...
+Selecting previously deselected package liblua5.1-0-dev.
+Unpacking liblua5.1-0-dev (from .../liblua5.1-0-dev_5.1.4-5_amd64.deb) ...
+Selecting previously deselected package libmysqlclient-dev.
+Unpacking libmysqlclient-dev (from .../libmysqlclient-dev_5.1.66-0+squeeze1_amd64.deb) ...
+Selecting previously deselected package libpcrecpp0.
+Unpacking libpcrecpp0 (from .../libpcrecpp0_8.02-1.1_amd64.deb) ...
+Selecting previously deselected package libpcre3-dev.
+Unpacking libpcre3-dev (from .../libpcre3-dev_8.02-1.1_amd64.deb) ...
+Selecting previously deselected package libsqlite3-dev.
+Unpacking libsqlite3-dev (from .../libsqlite3-dev_3.7.3-1_amd64.deb) ...
+Selecting previously deselected package libssl-dev.
+Unpacking libssl-dev (from .../libssl-dev_0.9.8o-4squeeze14_amd64.deb) ...
+Selecting previously deselected package libtinyxml2.5.3.
+Unpacking libtinyxml2.5.3 (from .../libtinyxml2.5.3_2.5.3-3_amd64.deb) ...
+Selecting previously deselected package libtinyxml-dev.
+Unpacking libtinyxml-dev (from .../libtinyxml-dev_2.5.3-3_amd64.deb) ...
+Selecting previously deselected package libxml2-dev.
+Unpacking libxml2-dev (from .../libxml2-dev_2.7.8.dfsg-2+squeeze6_amd64.deb) ...
+Selecting previously deselected package libzip1.
+Unpacking libzip1 (from .../libzip1_0.9.3-1_amd64.deb) ...
+Selecting previously deselected package libzip-dev.
+Unpacking libzip-dev (from .../libzip-dev_0.9.3-1_amd64.deb) ...
+Selecting previously deselected package python2.5-minimal.
+Unpacking python2.5-minimal (from .../python2.5-minimal_2.5.5-11_amd64.deb) ...
+Selecting previously deselected package python2.5.
+Unpacking python2.5 (from .../python2.5_2.5.5-11_amd64.deb) ...
+Selecting previously deselected package python-all.
+Unpacking python-all (from .../python-all_2.6.6-3+squeeze7_all.deb) ...
+Selecting previously deselected package python2.6-dev.
+Unpacking python2.6-dev (from .../python2.6-dev_2.6.6-8+b1_amd64.deb) ...
+Selecting previously deselected package python-dev.
+Unpacking python-dev (from .../python-dev_2.6.6-3+squeeze7_all.deb) ...
+Selecting previously deselected package python2.5-dev.
+Unpacking python2.5-dev (from .../python2.5-dev_2.5.5-11_amd64.deb) ...
+Selecting previously deselected package python-all-dev.
+Unpacking python-all-dev (from .../python-all-dev_2.6.6-3+squeeze7_all.deb) ...
+Selecting previously deselected package swig.
+Unpacking swig (from .../swig_1.3.40-3_amd64.deb) ...
+Selecting previously deselected package uuid-dev.
+Unpacking uuid-dev (from .../uuid-dev_2.17.2-9_amd64.deb) ...
+Processing triggers for man-db ...
+Processing triggers for install-info ...
+Processing triggers for doc-base ...
+Processing 1 added doc-base file(s)...
+Registering documents with scrollkeeper...
+Processing triggers for glx-alternative-mesa ...
+update-alternatives: using /usr/lib/mesa-diverted to provide /usr/lib/mesa-diverted/libGL.so-master (libGL.so-master) in auto mode.
+Processing triggers for menu ...
+Processing triggers for desktop-file-utils ...
+Processing triggers for gnome-menus ...
+Setting up m4 (1.4.14-3) ...
+Setting up flex (2.5.35-10) ...
+Setting up autoconf (2.67-2) ...
+Setting up autotools-dev (20100122.1) ...
+Setting up automake (1:1.11.1-1+squeeze1) ...
+update-alternatives: using /usr/bin/automake-1.11 to provide /usr/bin/automake (automake) in auto mode.
+Setting up bison (1:2.4.1.dfsg-3) ...
+update-alternatives: using /usr/bin/bison.yacc to provide /usr/bin/yacc (yacc) in auto mode.
+Setting up libtool (2.2.6b-2) ...
+Setting up dh-autoreconf (2) ...
+Setting up doxygen (1.7.1-2) ...
+Setting up libglib2.0-dev (2.24.2-1) ...
+Setting up libatk1.0-dev (1.30.0-1) ...
+Setting up libboost1.42-dev (1.42.0-4) ...
+Setting up libboost-dev (1.42.0.1) ...
+Setting up libpng12-dev (1.2.44-1+squeeze4) ...
+Setting up libpixman-1-dev (0.16.4-1) ...
+Setting up libxcb-render0-dev (1.6-1) ...
+Setting up libxcb-render-util0-dev (0.3.6-1) ...
+Setting up libcairo2-dev (1.8.10-6) ...
+Setting up libsigc++-2.0-dev (2.2.4.2-1) ...
+Setting up libcairomm-1.0-dev (1.8.4-3) ...
+Setting up libctemplate-dev (0.97-1) ...
+Setting up mesa-common-dev (7.7.1-5) ...
+Setting up libgl1-mesa-dev (7.7.1-5) ...
+Setting up libglibmm-2.4-dev (2.24.2-1) ...
+Setting up libgnome-keyring-dev (2.30.1-1) ...
+Setting up libpango1.0-dev (1.28.3-1+squeeze2) ...
+Setting up libxi-dev (2:1.3-7) ...
+Setting up x11proto-randr-dev (1.3.1-1) ...
+Setting up libxrandr-dev (2:1.3.0-3) ...
+Setting up x11proto-fixes-dev (1:4.1.1-2) ...
+Setting up libxfixes-dev (1:4.0.5-1) ...
+Setting up libxcursor-dev (1:1.1.10-2) ...
+Setting up x11proto-composite-dev (1:0.4.1-1) ...
+Setting up libxcomposite-dev (1:0.4.2-1) ...
+Setting up x11proto-damage-dev (1:1.2.0-1) ...
+Setting up libxdamage-dev (1:1.1.3-1) ...
+Setting up libgtk2.0-dev (2.20.1-2) ...
+Setting up libpangomm-1.4-dev (2.26.2-1) ...
+Setting up libgtkmm-2.4-dev (1:2.20.3-1) ...
+Setting up libncurses5-dev (5.7+20100313-5) ...
+Setting up libreadline6-dev (6.1-3) ...
+Setting up libreadline-dev (6.1-3) ...
+Setting up liblua5.1-0-dev (5.1.4-5) ...
+Setting up libmysqlclient-dev (5.1.66-0+squeeze1) ...
+Setting up libpcrecpp0 (8.02-1.1) ...
+Setting up libpcre3-dev (8.02-1.1) ...
+Setting up libsqlite3-dev (3.7.3-1) ...
+Setting up libssl-dev (0.9.8o-4squeeze14) ...
+Setting up libtinyxml2.5.3 (2.5.3-3) ...
+Setting up libtinyxml-dev (2.5.3-3) ...
+Setting up libxml2-dev (2.7.8.dfsg-2+squeeze6) ...
+Setting up libzip1 (0.9.3-1) ...
+Setting up libzip-dev (0.9.3-1) ...
+Setting up python2.5-minimal (2.5.5-11) ...
+Linking and byte-compiling packages for runtime python2.5...
+Setting up python2.5 (2.5.5-11) ...
+Setting up python-all (2.6.6-3+squeeze7) ...
+Setting up python2.6-dev (2.6.6-8+b1) ...
+Setting up python-dev (2.6.6-3+squeeze7) ...
+Setting up python2.5-dev (2.5.5-11) ...
+Setting up python-all-dev (2.6.6-3+squeeze7) ...
+Setting up swig (1.3.40-3) ...
+Setting up uuid-dev (2.17.2-9) ...
+Processing triggers for python-support ...
+Processing triggers for menu ...
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ dpkg-checkbuilddeps 
+dpkg-checkbuilddeps: Unmet build dependencies: debhelper (>= 9) libtinyxml-dev (>= 2.6.2)
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ apt-cache policy debhelper
+debhelper:
+  Installed: 8.0.0
+  Candidate: 8.0.0
+  Version table:
+     9.20120909~bpo60+1 0
+        100 http://backports.debian.org/debian-backports/ squeeze-backports/main amd64 Packages
+ *** 8.0.0 0
+        500 http://mirror.cc.columbia.edu/debian/ squeeze/main amd64 Packages
+        100 /var/lib/dpkg/status
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ apt-cache policy libtinyxml-dev
+libtinyxml-dev:
+  Installed: 2.5.3-3
+  Candidate: 2.5.3-3
+  Version table:
+ *** 2.5.3-3 0
+        500 http://mirror.cc.columbia.edu/debian/ squeeze/main amd64 Packages
+        100 /var/lib/dpkg/status
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ cd ..
+jon@vriska:~/mysql-workbench$ wget http://ftp.de.debian.org/debian/pool/main/t/tinyxml/tinyxml_2.6.2-1.dsc http://ftp.de.debian.org/debian/pool/main/t/tinyxml/tinyxml_2.6.2.orig.tar.gz http://ftp.de.debian.org/debian/pool/main/t/tinyxml/tinyxml_2.6.2-1.debian.tar.gz
+--2013-02-14 15:23:58--  http://ftp.de.debian.org/debian/pool/main/t/tinyxml/tinyxml_2.6.2-1.dsc
+Resolving ftp.de.debian.org... 141.76.2.4
+Connecting to ftp.de.debian.org|141.76.2.4|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1200 (1.2K)
+Saving to: “tinyxml_2.6.2-1.dsc”
+
+100%[======================================>] 1,200       --.-K/s   in 0s      
+
+2013-02-14 15:23:58 (288 MB/s) - “tinyxml_2.6.2-1.dsc” saved [1200/1200]
+
+--2013-02-14 15:23:58--  http://ftp.de.debian.org/debian/pool/main/t/tinyxml/tinyxml_2.6.2.orig.tar.gz
+Reusing existing connection to ftp.de.debian.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 210124 (205K) [application/x-gzip]
+Saving to: “tinyxml_2.6.2.orig.tar.gz”
+
+100%[======================================>] 210,124      138K/s   in 1.5s    
+
+2013-02-14 15:24:00 (138 KB/s) - “tinyxml_2.6.2.orig.tar.gz” saved [210124/210124]
+
+--2013-02-14 15:24:00--  http://ftp.de.debian.org/debian/pool/main/t/tinyxml/tinyxml_2.6.2-1.debian.tar.gz
+Reusing existing connection to ftp.de.debian.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4090 (4.0K) [application/x-gzip]
+Saving to: “tinyxml_2.6.2-1.debian.tar.gz”
+
+100%[======================================>] 4,090       --.-K/s   in 0s      
+
+2013-02-14 15:24:00 (7.89 MB/s) - “tinyxml_2.6.2-1.debian.tar.gz” saved [4090/4090]
+
+FINISHED --2013-02-14 15:24:00--
+Downloaded: 3 files, 210K in 1.5s (141 KB/s)
+jon@vriska:~/mysql-workbench$ dpkg-source -x tiny*dsc
+gpgv: keyblock resource `/home/jon/.gnupg/trustedkeys.gpg': file open error
+gpgv: Signature made Thu 26 May 2011 07:57:24 PM EDT using DSA key ID DDCD686A
+gpgv: Can't check signature: public key not found
+dpkg-source: warning: failed to verify signature on ./tinyxml_2.6.2-1.dsc
+dpkg-source: info: extracting tinyxml in tinyxml-2.6.2
+dpkg-source: info: unpacking tinyxml_2.6.2.orig.tar.gz
+dpkg-source: info: unpacking tinyxml_2.6.2-1.debian.tar.gz
+dpkg-source: info: applying enforce-use-stl.patch
+dpkg-source: info: applying entity-encoding.patch
+jon@vriska:~/mysql-workbench$ cd tiny*/
+jon@vriska:~/mysql-workbench/tinyxml-2.6.2$ dpkg-checkbuilddeps 
+jon@vriska:~/mysql-workbench/tinyxml-2.6.2$ dpkg-buildpackage -us -uc -rfakerootdpkg-buildpackage: export CFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export CPPFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: export CXXFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export FFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export LDFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: source package tinyxml
+dpkg-buildpackage: source version 2.6.2-1
+dpkg-buildpackage: source changed by Felix Geyer <debfx-pkg@fobos.de>
+dpkg-buildpackage: host architecture amd64
+ dpkg-source --before-build tinyxml-2.6.2
+ fakeroot debian/rules clean
+dh clean
+   dh_testdir
+   debian/rules override_dh_auto_clean
+make[1]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+dh_auto_clean
+make[2]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+rm -f core tinyxml.o tinyxmlparser.o xmltest.o tinyxmlerror.o tinystr.o xmltest
+make[2]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+rm -f libtinyxml.so* libtinyxml.a
+rm -rf xmltestdir
+make[1]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+   dh_clean
+ dpkg-source -b tinyxml-2.6.2
+dpkg-source: info: using source format `3.0 (quilt)'
+dpkg-source: info: building tinyxml using existing ./tinyxml_2.6.2.orig.tar.gz
+dpkg-source: info: building tinyxml in tinyxml_2.6.2-1.debian.tar.gz
+dpkg-source: info: building tinyxml in tinyxml_2.6.2-1.dsc
+ debian/rules build
+dh build
+   dh_testdir
+   dh_auto_configure
+   debian/rules override_dh_auto_build
+make[1]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+dh_auto_build -- CXXFLAGS="-g -O2 -DTIXML_USE_STL -DTIXML_USE_STL"
+make[2]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL  tinyxml.cpp -o tinyxml.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL  tinyxmlparser.cpp -o tinyxmlparser.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL  xmltest.cpp -o xmltest.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL  tinyxmlerror.cpp -o tinyxmlerror.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL  tinystr.cpp -o tinystr.o
+g++ -o xmltest  tinyxml.o tinyxmlparser.o xmltest.o tinyxmlerror.o tinystr.o  
+make[2]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+ar rc libtinyxml.a tinyxml.o tinyxmlparser.o tinyxmlerror.o
+rm *.o xmltest
+dh_auto_build -- CXXFLAGS="-g -O2 -DTIXML_USE_STL -DTIXML_USE_STL -fPIC"
+make[2]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL -fPIC  tinyxml.cpp -o tinyxml.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL -fPIC  tinyxmlparser.cpp -o tinyxmlparser.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL -fPIC  xmltest.cpp -o xmltest.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL -fPIC  tinyxmlerror.cpp -o tinyxmlerror.o
+g++ -c -g -O2 -DTIXML_USE_STL -DTIXML_USE_STL -fPIC  tinystr.cpp -o tinystr.o
+g++ -o xmltest  tinyxml.o tinyxmlparser.o xmltest.o tinyxmlerror.o tinystr.o  
+make[2]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+g++ -shared -Wl,-soname,libtinyxml.so.2.6.2 \
+    -o libtinyxml.so.2.6.2  \
+	  tinyxml.o tinyxmlparser.o tinyxmlerror.o
+make[1]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+   debian/rules override_dh_auto_test
+make[1]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+mkdir xmltestdir
+cp -a utf8test*.xml xmltestdir
+cd xmltestdir && ../xmltest
+** Demo doc read from disk: ** 
+
+** Printing via doc.Print **
+<?xml version="1.0" standalone="no" ?>
+<!-- Our to do list data -->
+<ToDo>
+    <!-- Do I need a secure PDA? -->
+    <Item priority="1" distance="close">Go to the
+        <bold>Toy store!</bold>
+    </Item>
+    <Item priority="2" distance="none">Do bills</Item>
+    <Item priority="2" distance="far &amp; back">Look for Evil Dinosaurs!</Item>
+</ToDo>
+** Printing via TiXmlPrinter **
+<?xml version="1.0" standalone="no" ?>
+<!-- Our to do list data -->
+<ToDo>
+    <!-- Do I need a secure PDA? -->
+    <Item priority="1" distance="close">
+        Go to the
+        <bold>Toy store!</bold>
+    </Item>
+    <Item priority="2" distance="none">Do bills</Item>
+    <Item priority="2" distance="far &amp; back">Look for Evil Dinosaurs!</Item>
+</ToDo>
+** Printing via operator<< **
+<?xml version="1.0" standalone="no" ?><!-- Our to do list data --><ToDo><!-- Do I need a secure PDA? --><Item priority="1" distance="close">Go to the<bold>Toy store!</bold></Item><Item priority="2" distance="none">Do bills</Item><Item priority="2" distance="far &amp; back">Look for Evil Dinosaurs!</Item></ToDo>
+** Demo doc processed: ** 
+
+<?xml version="1.0" standalone="no" ?>
+<!-- Our to do list data -->
+<ToDo>
+    <!-- Do I need a secure PDA? -->
+    <Item priority="2" distance="close">Go to the
+        <bold>Toy store!</bold>
+    </Item>
+    <Item priority="1" distance="far">Talk to:
+        <Meeting where="School">
+            <Attendee name="Marple" position="teacher" />
+            <Attendee name="Voel" position="counselor" />
+        </Meeting>
+        <Meeting where="Lunch" />
+    </Item>
+    <Item priority="2" distance="here">Do bills</Item>
+</ToDo>
+** Demo doc processed to stream: ** 
+
+<?xml version="1.0" standalone="no" ?><!-- Our to do list data --><ToDo><!-- Do I need a secure PDA? --><Item priority="2" distance="close">Go to the<bold>Toy store!</bold></Item><Item priority="1" distance="far">Talk to:<Meeting where="School"><Attendee name="Marple" position="teacher" /><Attendee name="Voel" position="counselor" /></Meeting><Meeting where="Lunch" /></Item><Item priority="2" distance="here">Do bills</Item></ToDo>
+
+** Basic structure. **
+[pass] Output stream correct.
+[pass] Root element exists. [1][1]
+[pass] Root element value is 'ToDo'. [ToDo][ToDo]
+[pass] First child exists & is a comment. [1][1]
+[pass] Sibling element exists & is an element. [1][1]
+[pass] Value is 'Item'. [Item][Item]
+[pass] First child exists. [1][1]
+[pass] Value is 'Go to the'. [Go to the][Go to the]
+
+** Iterators. **
+[pass] Top level nodes, using First / Next. [3][3]
+[pass] Top level nodes, using Last / Previous. [3][3]
+[pass] Top level nodes, using IterateChildren. [3][3]
+[pass] Children of the 'ToDo' element, using First / Next. [3][3]
+[pass] 'Item' children of the 'ToDo' element, using First/Next. [3][3]
+[pass] 'Item' children of the 'ToDo' element, using Last/Previous. [3][3]
+
+** Parsing. **
+[pass] Element parsed, value is 'Element0'. [Element0][Element0]
+[pass] Reads attribute 'attribute0="foo0"'. [foo0][foo0]
+[pass] Reads incorrectly formatted 'attribute1=noquotes'. [noquotes][noquotes]
+[pass] Read attribute with entity value '>'. [>][>]
+[pass] Error row [3][3]
+[pass] Error column [17][17]
+
+** Streaming. **
+[pass] Stream round trip correct.
+[pass] String printing correct.
+[pass] Query attribute: int as double [0][0]
+[pass] Query attribute: int as double [1][1]
+[pass] Query attribute: double as double [2][2]
+[pass] Query attribute: double as int [0][0]
+[pass] Query attribute: double as int [2][2]
+[pass] Query attribute: not a number [2][2]
+[pass] Query attribute: does not exist [1][1]
+[pass] Attribute round trip. c-string. [strValue][strValue]
+[pass] Attribute round trip. int. [1][1]
+[pass] Attribute round trip. double. [-1][-1]
+[pass] Location tracking: Tab 8: room row [1][1]
+[pass] Location tracking: Tab 8: room col [49][49]
+[pass] Location tracking: Tab 8: doors row [1][1]
+[pass] Location tracking: Tab 8: doors col [55][55]
+[pass] Location tracking: Declaration row [1][1]
+[pass] Location tracking: Declaration col [5][5]
+[pass] Location tracking: room row [1][1]
+[pass] Location tracking: room col [45][45]
+[pass] Location tracking: doors row [1][1]
+[pass] Location tracking: doors col [51][51]
+[pass] Location tracking: Comment row [2][2]
+[pass] Location tracking: Comment col [3][3]
+[pass] Location tracking: text row [3][3]
+[pass] Location tracking: text col [24][24]
+[pass] Location tracking: door0 row [3][3]
+[pass] Location tracking: door0 col [5][5]
+[pass] Location tracking: door1 row [4][4]
+[pass] Location tracking: door1 col [5][5]
+
+** UTF-8 **
+[pass] UTF-8: Russian value.
+[pass] UTF-8: Russian value row. [4][4]
+[pass] UTF-8: Russian value column. [5][5]
+[pass] UTF-8: Browsing russian element name.
+[pass] UTF-8: Russian element name row. [7][7]
+[pass] UTF-8: Russian element name column. [47][47]
+[pass] UTF-8: Declaration column. [1][1]
+[pass] UTF-8: Document column. [1][1]
+[pass] UTF-8: Verified multi-language round trip. [1][1]
+[pass] Legacy encoding: Verify text element. [r?sum?][r?sum?]
+
+** Copy and Assignment **
+[pass] Copy/Assign: element copy #1. [element][element]
+[pass] Copy/Assign: element copy #2. [value][value]
+[pass] Copy/Assign: element assign #1. [element][element]
+[pass] Copy/Assign: element assign #2. [value][value]
+[pass] Copy/Assign: element assign #3. [1][1]
+[pass] Copy/Assign: comment copy. [comment][comment]
+[pass] Copy/Assign: comment assign. [comment][comment]
+[pass] Copy/Assign: unknown copy. [[unknown]][[unknown]]
+[pass] Copy/Assign: unknown assign. [[unknown]][[unknown]]
+[pass] Copy/Assign: text copy. [TextNode][TextNode]
+[pass] Copy/Assign: text assign. [TextNode][TextNode]
+[pass] Copy/Assign: declaration copy. [UTF-8][UTF-8]
+[pass] Copy/Assign: text assign. [UTF-8][UTF-8]
+[pass] Copy/Assign: document copy.
+[pass] Copy/Assign: document assign.
+
+** Parsing, no Condense Whitespace **
+[pass] Condense white space OFF.
+[pass] GetText() normal use. [This is text][This is text]
+[pass] GetText() contained element. [1][1]
+[pass] GetText() partial. [This is ][This is ]
+<xmlElement>
+    <![CDATA[I am > the rules!
+...since I make symbolic puns]]>
+</xmlElement>
+[pass] CDATA parse.
+[pass] CDATA stream.
+[pass] CDATA copy.
+[pass] CDATA with all bytes #1.
+[pass] CDATA with all bytes #2.
+<xmlElement>
+    <![CDATA[<b>I am > the rules!</b>
+...since I make symbolic puns]]>
+</xmlElement>
+[pass] CDATA parse. [ 1480107 ]
+[pass] CDATA stream. [ 1480107 ]
+[pass] CDATA copy. [ 1480107 ]
+
+** Fuzzing... **
+** Fuzzing Complete. **
+
+** Bug regression tests **
+[pass] Test InsertBeforeChild on empty node. [1][1]
+[pass] Test InsertAfterChild on empty node.  [1][1]
+[pass] Entity transformation: read. 
+[pass] Entity transformation: write. 
+[pass] dot in element attributes and names [0][0]
+[pass] Entity with one digit. [1][1]
+[pass] Entity with one digit. [1.1 Start easy ignore fin thickness
+][1.1 Start easy ignore fin thickness
+]
+[pass] Correct value of unknown. [!DOCTYPE PLAY SYSTEM 'play.dtd'][!DOCTYPE PLAY SYSTEM 'play.dtd']
+[pass] Correct streaming of unknown. [<!ELEMENT title (#PCDATA)>][<!ELEMENT title (#PCDATA)>]
+[pass] Comment formatting. [ Somewhat<evil> ][ Somewhat<evil> ]
+[pass] Comment streaming. [<!-- Somewhat<evil> -->][<!-- Somewhat<evil> -->]
+[pass] White space kept. [ This has leading and trailing space ][ This has leading and trailing space ]
+[pass] White space kept. [This has  internal space][This has  internal space]
+[pass] White space kept. [ This has leading, trailing, and  internal space ][ This has leading, trailing, and  internal space ]
+[pass] White space condensed. [This has leading and trailing space][This has leading and trailing space]
+[pass] White space condensed. [This has internal space][This has internal space]
+[pass] White space condensed. [This has leading, trailing, and internal space][This has leading, trailing, and internal space]
+[pass] Parsing repeated attributes. [1][1]
+[pass] Embedded null throws error. [1][1]
+[pass] Embedded null throws error. [1][1]
+[pass] ISO-8859-1 Parsing. [C?nt?nt???????][C?nt?nt???????]
+[pass] Empty document error TIXML_ERROR_DOCUMENT_EMPTY [12][12]
+[pass] Test safe error return. [0][0]
+[pass] Low entities. [][]
+<test>&#x0E;</test>
+[pass] Throw error with bad end quotes. [1][1]
+[pass] QueryValueAttribute [0][0]
+[pass] QueryValueAttribute [0][0]
+[pass] QueryValueAttribute [0][0]
+[pass] QueryValueAttribute [2][2]
+[pass] QueryValueAttribute [1][1]
+[pass] QueryValueAttribute [0][0]
+[pass] QueryValueAttribute [1][1]
+[pass] QueryValueAttribute [1][1]
+[pass] QueryValueAttribute [1][1]
+[pass] QueryValueAttribute [1][1]
+[pass] Attribute [0][0]
+[pass] Attribute [1][1]
+[pass] Attribute [1][1]
+[pass] Document only at top level. [1][1]
+[pass] Document only at top level. [15][15]
+[pass] Missing end tag at end of input [1][1]
+[pass] Missing end tag with trailing whitespace [1][1]
+[pass] Comments ignore entities.
+[pass] Comments ignore entities.
+[pass] Comments ignore entities.
+[pass] Comments ignore entities.
+[pass] Comments iterate correctly. [3][3]
+[pass] Handle end tag whitespace [0][0]
+[pass] Infinite loop test. [1][1]
+[pass] Odd XML parsing. [tag][tag]
+[pass] Entity escaping [<foo>foo&amp;#xa+bar</foo>][<foo>foo&amp;#xa+bar</foo>]
+
+Pass 138, Fail 0
+rm -rf xmltestdir
+make[1]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+ fakeroot debian/rules binary
+dh binary
+   dh_testroot
+   dh_prep
+   dh_installdirs
+   dh_auto_install
+   dh_install
+   dh_installdocs
+   dh_installchangelogs
+   dh_installexamples
+   dh_installman
+   dh_installcatalogs
+   dh_installcron
+   dh_installdebconf
+   dh_installemacsen
+   dh_installifupdown
+   dh_installinfo
+   dh_pysupport
+   dh_installinit
+   dh_installmenu
+   dh_installmime
+   dh_installmodules
+   dh_installlogcheck
+   dh_installlogrotate
+   dh_installpam
+   dh_installppp
+   dh_installudev
+   dh_installwm
+   dh_installxfonts
+   dh_bugfiles
+   dh_lintian
+   dh_gconf
+   dh_icons
+   dh_perl
+   dh_usrlocal
+   debian/rules override_dh_link
+make[1]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+dh_link -plibtinyxml-dev usr/lib/libtinyxml.so.2.6.2 \
+	  usr/lib/libtinyxml.so
+dh_link --remaining-packages
+make[1]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+   dh_compress
+   dh_fixperms
+   debian/rules override_dh_strip
+make[1]: Entering directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+dh_strip --dbg-package=libtinyxml2.6.2-dbg
+make[1]: Leaving directory `/home/jon/mysql-workbench/tinyxml-2.6.2'
+   dh_makeshlibs
+   dh_shlibdeps
+   dh_installdeb
+   dh_gencontrol
+   dh_md5sums
+   dh_builddeb
+dpkg-deb: building package `libtinyxml2.6.2' in `../libtinyxml2.6.2_2.6.2-1_amd64.deb'.
+dpkg-deb: building package `libtinyxml2.6.2-dbg' in `../libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb'.
+dpkg-deb: building package `libtinyxml-dev' in `../libtinyxml-dev_2.6.2-1_amd64.deb'.
+dpkg-deb: building package `libtinyxml-doc' in `../libtinyxml-doc_2.6.2-1_all.deb'.
+ dpkg-genchanges  >../tinyxml_2.6.2-1_amd64.changes
+dpkg-genchanges: including full source code in upload
+ dpkg-source --after-build tinyxml-2.6.2
+dpkg-buildpackage: full upload (original source is included)
+jon@vriska:~/mysql-workbench/tinyxml-2.6.2$ cd ..
+jon@vriska:~/mysql-workbench$ ls 
+libtinyxml-dev_2.6.2-1_amd64.deb
+libtinyxml-doc_2.6.2-1_all.deb
+libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb
+libtinyxml2.6.2_2.6.2-1_amd64.deb
+mysql-workbench-5.2.40+dfsg
+mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+mysql-workbench_5.2.40+dfsg-2.dsc
+mysql-workbench_5.2.40+dfsg.orig.tar.xz
+tinyxml-2.6.2
+tinyxml_2.6.2-1.debian.tar.gz
+tinyxml_2.6.2-1.dsc
+tinyxml_2.6.2-1_amd64.changes
+tinyxml_2.6.2.orig.tar.gz
+jon@vriska:~/mysql-workbench$ sudo dpkg -i *deb
+(Reading database ... 192783 files and directories currently installed.)
+Preparing to replace libtinyxml-dev 2.5.3-3 (using libtinyxml-dev_2.6.2-1_amd64.deb) ...
+Unpacking replacement libtinyxml-dev ...
+Selecting previously deselected package libtinyxml-doc.
+Unpacking libtinyxml-doc (from libtinyxml-doc_2.6.2-1_all.deb) ...
+Selecting previously deselected package libtinyxml2.6.2-dbg.
+Unpacking libtinyxml2.6.2-dbg (from libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb) ...
+Selecting previously deselected package libtinyxml2.6.2.
+Unpacking libtinyxml2.6.2 (from libtinyxml2.6.2_2.6.2-1_amd64.deb) ...
+Setting up libtinyxml-doc (2.6.2-1) ...
+Setting up libtinyxml2.6.2 (2.6.2-1) ...
+Setting up libtinyxml-dev (2.6.2-1) ...
+Setting up libtinyxml2.6.2-dbg (2.6.2-1) ...
+jon@vriska:~/mysql-workbench$ cd mysql-workbench-5.2.40+dfsg/
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ sudo apt-get -t squeeze-backports install debhelper
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libtinyxml2.5.3 python-paramiko python-pysqlite2 python-crypto
+Use 'apt-get autoremove' to remove them.
+Suggested packages:
+  dh-make
+The following packages will be upgraded:
+  debhelper
+1 upgraded, 0 newly installed, 0 to remove and 141 not upgraded.
+Need to get 707 kB of archives.
+After this operation, 467 kB of additional disk space will be used.
+Get:1 http://backports.debian.org/debian-backports/ squeeze-backports/main debhelper all 9.20120909~bpo60+1 [707 kB]
+Fetched 707 kB in 4s (164 kB/s)     
+(Reading database ... 192888 files and directories currently installed.)
+Preparing to replace debhelper 8.0.0 (using .../debhelper_9.20120909~bpo60+1_all.deb) ...
+Unpacking replacement debhelper ...
+Processing triggers for man-db ...
+Setting up debhelper (9.20120909~bpo60+1) ...
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ dpkg-checkbuilddeps 
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ dpkg-buildpackage -us -uc -rfakeroot
+dpkg-buildpackage: export CFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export CPPFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: export CXXFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export FFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export LDFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: source package mysql-workbench
+dpkg-buildpackage: source version 5.2.40+dfsg-2
+dpkg-buildpackage: source changed by Dmitry Smirnov <onlyjob@member.fsf.org>
+dpkg-buildpackage: host architecture amd64
+ dpkg-source --before-build mysql-workbench-5.2.40+dfsg
+dpkg-source: info: using options from mysql-workbench-5.2.40+dfsg/debian/source/options: --compression=xz
+ fakeroot debian/rules clean
+Info: DEB_BUILD_OPTIONS:file=parallel=4
+dh clean --parallel --max-parallel=4 --with autoreconf,python2
+   dh_testdir -O--parallel -O--max-parallel=4
+   dh_auto_clean -O--parallel -O--max-parallel=4
+   dh_autoreconf_clean -O--parallel -O--max-parallel=4
+   dh_clean -O--parallel -O--max-parallel=4
+ dpkg-source -b mysql-workbench-5.2.40+dfsg
+dpkg-source: info: using options from mysql-workbench-5.2.40+dfsg/debian/source/options: --compression=xz
+dpkg-source: info: using source format `3.0 (quilt)'
+dpkg-source: info: building mysql-workbench using existing ./mysql-workbench_5.2.40+dfsg.orig.tar.xz
+dpkg-source: warning: ignoring deletion of file library/forms/swig/mforms_wrap.cxx
+dpkg-source: warning: ignoring deletion of file library/forms/swig/mforms.py
+dpkg-source: info: building mysql-workbench in mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+dpkg-source: info: building mysql-workbench in mysql-workbench_5.2.40+dfsg-2.dsc
+ debian/rules build
+Info: DEB_BUILD_OPTIONS:file=parallel=4
+make: `build' is up to date.
+ fakeroot debian/rules binary
+Info: DEB_BUILD_OPTIONS:file=parallel=4
+dh binary --parallel --max-parallel=4 --with autoreconf,python2
+   dh_testdir -O--parallel -O--max-parallel=4
+   debian/rules override_dh_autoreconf
+Info: DEB_BUILD_OPTIONS:environment=parallel=4
+make[1]: Entering directory `/home/jon/mysql-workbench/mysql-workbench-5.2.40+dfsg'
+#NOCONFIGURE="1" ./autogen.sh
+dh_autoreconf
+libtoolize: putting auxiliary files in `.'.
+libtoolize: copying file `./ltmain.sh'
+libtoolize: Consider adding `AC_CONFIG_MACRO_DIR([m4])' to configure.in and
+libtoolize: rerunning libtoolize, to keep the correct libtool macros in-tree.
+libtoolize: Consider adding `-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+generated/Makefile.am:34: `%'-style pattern rules are a GNU make extension
+generated/Makefile.am:37: `%'-style pattern rules are a GNU make extension
+make[1]: Leaving directory `/home/jon/mysql-workbench/mysql-workbench-5.2.40+dfsg'
+   debian/rules override_dh_auto_configure
+...
+...
+...
+   dh_installdeb -O--parallel -O--max-parallel=4
+   dh_gencontrol -O--parallel -O--max-parallel=4
+   dh_md5sums -O--parallel -O--max-parallel=4
+   debian/rules override_dh_builddeb
+Info: DEB_BUILD_OPTIONS:environment=parallel=4
+make[1]: Entering directory `/home/jon/mysql-workbench/mysql-workbench-5.2.40+dfsg'
+dh_builddeb -- -Zxz
+dpkg-deb: building package `mysql-workbench-data' in `../mysql-workbench-data_5.2.40+dfsg-2_all.deb'.
+dpkg-deb: building package `mysql-workbench' in `../mysql-workbench_5.2.40+dfsg-2_amd64.deb'.
+make[1]: Leaving directory `/home/jon/mysql-workbench/mysql-workbench-5.2.40+dfsg'
+ dpkg-genchanges  >../mysql-workbench_5.2.40+dfsg-2_amd64.changes
+dpkg-genchanges: not including original source code in upload
+ dpkg-source --after-build mysql-workbench-5.2.40+dfsg
+dpkg-source: info: using options from mysql-workbench-5.2.40+dfsg/debian/source/options: --compression=xz
+dpkg-buildpackage: binary and diff upload (original source NOT included)
+jon@vriska:~/mysql-workbench/mysql-workbench-5.2.40+dfsg$ cd ..
+jon@vriska:~/mysql-workbench$ ls 
+libtinyxml-dev_2.6.2-1_amd64.deb
+libtinyxml-doc_2.6.2-1_all.deb
+libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb
+libtinyxml2.6.2_2.6.2-1_amd64.deb
+mysql-workbench-5.2.40+dfsg
+mysql-workbench-data_5.2.40+dfsg-2_all.deb
+mysql-workbench_5.2.40+dfsg-2.debian.tar.xz
+mysql-workbench_5.2.40+dfsg-2.dsc
+mysql-workbench_5.2.40+dfsg-2_amd64.changes
+mysql-workbench_5.2.40+dfsg-2_amd64.deb
+mysql-workbench_5.2.40+dfsg.orig.tar.xz
+tinyxml-2.6.2
+tinyxml_2.6.2-1.debian.tar.gz
+tinyxml_2.6.2-1.dsc
+tinyxml_2.6.2-1_amd64.changes
+tinyxml_2.6.2.orig.tar.gz
+jon@vriska:~/mysql-workbench$ sudo gdebi mysql-workbench*deb
+Reading package lists... Done
+Building dependency tree        
+Reading state information... Done
+Building data structures... Done 
+Building data structures... Done 
+
+
+MySQL Workbench -- architecture independent data
+ MySQL Workbench is a modeling tool that allow to design
+ and generate MySQL databases graphically. It also has administration
+ and query development modules where you can manage MySQL server instances
+ and execute SQL queries.
+ .
+ This package provides architecture independent files
+Do you want to install the software package? [y/N]:y
+Selecting previously deselected package mysql-workbench-data.
+(Reading database ... 192990 files and directories currently installed.)
+Unpacking mysql-workbench-data (from mysql-workbench-data_5.2.40+dfsg-2_all.deb) ...
+Setting up mysql-workbench-data (5.2.40+dfsg-2) ...
+Processing triggers for man-db ...
+
+jon@vriska:~/mysql-workbench$ ls mysql-workbench*deb
+mysql-workbench-data_5.2.40+dfsg-2_all.deb
+mysql-workbench_5.2.40+dfsg-2_amd64.deb
+jon@vriska:~/mysql-workbench$ sudo gdebi mysql-workbench_5.2.40+dfsg-2_amd64.deb 
+Reading package lists... Done
+Building dependency tree        
+Reading state information... Done
+Building data structures... Done 
+Building data structures... Done 
+This package is uninstallable
+Dependency is not satisfiable: python-mysql.connector
+
+jon@vriska:~/mysql-workbench$ apt-cache search python-mysql
+bibus - bibliographic database
+eikazo - graphical frontend for SANE designed for mass-scanning
+python-mysqldb-dbg - A Python interface to MySQL (debug extension)
+python-mysqldb - A Python interface to MySQL
+jon@vriska:~/mysql-workbench$ wget http://ftp.de.debian.org/debian/pool/main/m/mysql-connector-python/mysql-connector-python_0.3.2-1.dsc http://ftp.de.debian.org/debian/pool/main/m/mysql-connector-python/mysql-connector-python_0.3.2.orig.tar.gz http://ftp.de.debian.org/debian/pool/main/m/mysql-connector-python/mysql-connector-python_0.3.2-1.debian.tar.gz
+--2013-02-14 15:40:00--  http://ftp.de.debian.org/debian/pool/main/m/mysql-connector-python/mysql-connector-python_0.3.2-1.dsc
+Resolving ftp.de.debian.org... 141.76.2.4
+Connecting to ftp.de.debian.org|141.76.2.4|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1487 (1.5K)
+Saving to: “mysql-connector-python_0.3.2-1.dsc”
+
+100%[======================================>] 1,487       --.-K/s   in 0s      
+
+2013-02-14 15:40:00 (347 MB/s) - “mysql-connector-python_0.3.2-1.dsc” saved [1487/1487]
+
+--2013-02-14 15:40:00--  http://ftp.de.debian.org/debian/pool/main/m/mysql-connector-python/mysql-connector-python_0.3.2.orig.tar.gz
+Reusing existing connection to ftp.de.debian.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 129408 (126K) [application/x-gzip]
+Saving to: “mysql-connector-python_0.3.2.orig.tar.gz”
+
+34% [============>                          ] 44,838      72.3K/s              d100%[======================================>] 129,408      102K/s   in 1.2s     
+
+2013-02-14 15:40:02 (102 KB/s) - “mysql-connector-python_0.3.2.orig.tar.gz” saved [129408/129408]
+
+--2013-02-14 15:40:02--  http://ftp.de.debian.org/debian/pool/main/m/mysql-connector-python/mysql-connector-python_0.3.2-1.debian.tar.gz
+Reusing existing connection to ftp.de.debian.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1865 (1.8K) [application/x-gzip]
+Saving to: “mysql-connector-python_0.3.2-1.debian.tar.gz”
+
+100%[======================================>] 1,865       --.-K/s   in 0s      
+
+2013-02-14 15:40:02 (253 MB/s) - “mysql-connector-python_0.3.2-1.debian.tar.gz” saved [1865/1865]
+
+FINISHED --2013-02-14 15:40:02--
+Downloaded: 3 files, 130K in 1.2s (105 KB/s)
+jon@vriska:~/mysql-workbench$ dpkg-source -x mysql-connector-python_0.3.2-1.dsc gpgv: keyblock resource `/home/jon/.gnupg/trustedkeys.gpg': file open error
+gpgv: Signature made Sat 03 Dec 2011 01:28:01 PM EST using DSA key ID 444DD950
+gpgv: Can't check signature: public key not found
+dpkg-source: warning: failed to verify signature on ./mysql-connector-python_0.3.2-1.dsc
+dpkg-source: info: extracting mysql-connector-python in mysql-connector-python-0.3.2
+dpkg-source: info: unpacking mysql-connector-python_0.3.2.orig.tar.gz
+dpkg-source: info: unpacking mysql-connector-python_0.3.2-1.debian.tar.gz
+jon@vriska:~/mysql-workbench$ cd mysql-connector-python-0.3.2/
+jon@vriska:~/mysql-workbench/mysql-connector-python-0.3.2$ dpkg-checkbuilddeps 
+jon@vriska:~/mysql-workbench/mysql-connector-python-0.3.2$ dpkg-buildpackage -us -uc -rfakeroot
+dpkg-buildpackage: export CFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export CPPFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: export CXXFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export FFLAGS from dpkg-buildflags (origin: vendor): -g -O2
+dpkg-buildpackage: export LDFLAGS from dpkg-buildflags (origin: vendor): 
+dpkg-buildpackage: source package mysql-connector-python
+dpkg-buildpackage: source version 0.3.2-1
+dpkg-buildpackage: source changed by Sandro Tosi <morph@debian.org>
+dpkg-buildpackage: host architecture amd64
+ dpkg-source --before-build mysql-connector-python-0.3.2
+ fakeroot debian/rules clean
+dh clean
+   dh_testdir
+   dh_auto_clean
+running clean
+'build/lib' does not exist -- can't clean it
+'build/bdist.linux-x86_64' does not exist -- can't clean it
+'build/scripts-2.5' does not exist -- can't clean it
+running clean
+'build/lib.linux-x86_64-2.6' does not exist -- can't clean it
+'build/bdist.linux-x86_64' does not exist -- can't clean it
+'build/scripts-2.6' does not exist -- can't clean it
+   dh_clean
+ dpkg-source -b mysql-connector-python-0.3.2
+dpkg-source: info: using source format `3.0 (quilt)'
+dpkg-source: info: building mysql-connector-python using existing ./mysql-connector-python_0.3.2.orig.tar.gz
+dpkg-source: info: building mysql-connector-python in mysql-connector-python_0.3.2-1.debian.tar.gz
+dpkg-source: info: building mysql-connector-python in mysql-connector-python_0.3.2-1.dsc
+ debian/rules build
+dh build
+   dh_testdir
+   dh_auto_configure
+   dh_auto_build
+running build
+running build_py
+creating build
+creating build/lib
+creating build/lib/mysql
+copying python2/mysql/__init__.py -> build/lib/mysql
+creating build/lib/mysql/connector
+copying python2/mysql/connector/_version.py -> build/lib/mysql/connector
+copying python2/mysql/connector/dbapi.py -> build/lib/mysql/connector
+copying python2/mysql/connector/protocol.py -> build/lib/mysql/connector
+copying python2/mysql/connector/utils.py -> build/lib/mysql/connector
+copying python2/mysql/connector/constants.py -> build/lib/mysql/connector
+copying python2/mysql/connector/connection.py -> build/lib/mysql/connector
+copying python2/mysql/connector/cursor.py -> build/lib/mysql/connector
+copying python2/mysql/connector/__init__.py -> build/lib/mysql/connector
+copying python2/mysql/connector/conversion.py -> build/lib/mysql/connector
+copying python2/mysql/connector/errors.py -> build/lib/mysql/connector
+running build
+running build_py
+creating build/lib.linux-x86_64-2.6
+creating build/lib.linux-x86_64-2.6/mysql
+copying python2/mysql/__init__.py -> build/lib.linux-x86_64-2.6/mysql
+creating build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/_version.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/dbapi.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/protocol.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/utils.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/constants.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/connection.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/cursor.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/__init__.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/conversion.py -> build/lib.linux-x86_64-2.6/mysql/connector
+copying python2/mysql/connector/errors.py -> build/lib.linux-x86_64-2.6/mysql/connector
+   dh_auto_test
+ fakeroot debian/rules binary
+dh binary
+   dh_testroot
+   dh_prep
+   dh_installdirs
+   dh_auto_install
+running install
+running build
+running build_py
+running install_lib
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/_version.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/dbapi.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/protocol.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/utils.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/constants.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/connection.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/cursor.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/__init__.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/conversion.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/connector/errors.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql/connector
+copying build/lib/mysql/__init__.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql
+running install_egg_info
+Writing /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.5/site-packages/mysql_connector_python-0.3.2_devel.egg-info
+running install
+running build
+running build_py
+running install_lib
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql
+creating /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/_version.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/dbapi.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/protocol.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/utils.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/constants.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/connection.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/cursor.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/__init__.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/conversion.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/connector/errors.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql/connector
+copying build/lib.linux-x86_64-2.6/mysql/__init__.py -> /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql
+running install_egg_info
+Writing /home/jon/mysql-workbench/mysql-connector-python-0.3.2/debian/python-mysql.connector/usr/lib/python2.6/dist-packages/mysql_connector_python-0.3.2_devel.egg-info
+   dh_install
+   dh_installdocs
+   dh_installchangelogs
+   debian/rules override_dh_installexamples
+make[1]: Entering directory `/home/jon/mysql-workbench/mysql-connector-python-0.3.2'
+dh_installexamples python2/examples/*
+make[1]: Leaving directory `/home/jon/mysql-workbench/mysql-connector-python-0.3.2'
+   dh_installman
+   dh_installcatalogs
+   dh_installcron
+   dh_installdebconf
+   dh_installemacsen
+   dh_installifupdown
+   dh_installinfo
+   dh_pysupport
+   dh_installinit
+   dh_installmenu
+   dh_installmime
+   dh_installmodules
+   dh_installlogcheck
+   dh_installlogrotate
+   dh_installpam
+   dh_installppp
+   dh_installudev
+   dh_installwm
+   dh_installxfonts
+   dh_installgsettings
+   dh_bugfiles
+   dh_ucf
+   dh_lintian
+   dh_gconf
+   dh_icons
+   dh_perl
+   dh_usrlocal
+   dh_link
+   dh_compress
+   dh_fixperms
+   dh_installdeb
+   dh_gencontrol
+dpkg-gencontrol: warning: Depends field of package python-mysql.connector: unknown substitution variable ${shlibs:Depends}
+dpkg-gencontrol: warning: package python-mysql.connector: unused substitution variable ${python:Versions}
+dpkg-gencontrol: warning: package python-mysql.connector: unused substitution variable ${python:Provides}
+   dh_md5sums
+   dh_builddeb
+dpkg-deb: building package `python-mysql.connector' in `../python-mysql.connector_0.3.2-1_all.deb'.
+ dpkg-genchanges  >../mysql-connector-python_0.3.2-1_amd64.changes
+dpkg-genchanges: including full source code in upload
+ dpkg-source --after-build mysql-connector-python-0.3.2
+dpkg-buildpackage: full upload (original source is included)
+jon@vriska:~/mysql-workbench/mysql-connector-python-0.3.2$ cd ..
+jon@vriska:~/mysql-workbench$ ls *deb
+libtinyxml-dev_2.6.2-1_amd64.deb
+libtinyxml-doc_2.6.2-1_all.deb
+libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb
+libtinyxml2.6.2_2.6.2-1_amd64.deb
+mysql-workbench-data_5.2.40+dfsg-2_all.deb
+mysql-workbench_5.2.40+dfsg-2_amd64.deb
+python-mysql.connector_0.3.2-1_all.deb
+jon@vriska:~/mysql-workbench$ sudo gdebi python-mysql.connector_0.3.2-1_all.deb  
+Reading package lists... Done
+Building dependency tree        
+Reading state information... Done
+Building data structures... Done 
+Building data structures... Done 
+
+
+pure Python implementation of MySQL Client/Server protocol
+ MySQL driver written in Python which does not depend on MySQL C client
+ libraries and implements the DB API v2.0 specification (PEP-249).
+ .
+ MySQL Connector/Python is implementing the MySQL Client/Server protocol
+ completely in Python. This means you don't have to compile anything or MySQL
+ (client library) doesn't even have to be installed on the machine.
+Do you want to install the software package? [y/N]:y
+Selecting previously deselected package python-mysql.connector.
+(Reading database ... 193765 files and directories currently installed.)
+Unpacking python-mysql.connector (from python-mysql.connector_0.3.2-1_all.deb) ...
+Setting up python-mysql.connector (0.3.2-1) ...
+Processing triggers for python-support ...
+
+jon@vriska:~/mysql-workbench$ sudo gdebi mysql-workbench_5.2.40+dfsg-2_amd64.deb 
+Reading package lists... Done
+Building dependency tree        
+Reading state information... Done
+Building data structures... Done 
+Building data structures... Done 
+
+
+MySQL Workbench - a visual database modeling, administration and queuing tool
+ MySQL Workbench is a modeling tool that allow to design
+ and generate MySQL databases graphically. It also has administration
+ and query development modules where you can manage MySQL server instances
+ and execute SQL queries.
+Do you want to install the software package? [y/N]:y
+Selecting previously deselected package mysql-workbench.
+(Reading database ... 193795 files and directories currently installed.)
+Unpacking mysql-workbench (from mysql-workbench_5.2.40+dfsg-2_amd64.deb) ...
+Setting up mysql-workbench (5.2.40+dfsg-2) ...
+Processing triggers for shared-mime-info ...
+Unknown media type in type 'all/all'
+
+Unknown media type in type 'all/allfiles'
+
+Unknown media type in type 'uri/mms'
+
+Unknown media type in type 'uri/mmst'
+
+Unknown media type in type 'uri/mmsu'
+
+Unknown media type in type 'uri/pnm'
+
+Unknown media type in type 'uri/rtspt'
+
+Unknown media type in type 'uri/rtspu'
+
+Unknown media type in type 'fonts/package'
+
+Unknown media type in type 'interface/x-winamp-skin'
+
+Processing triggers for menu ...
+Processing triggers for desktop-file-utils ...
+Processing triggers for gnome-menus ...
+
+jon@vriska:~/mysql-workbench$ sudo dpkg -i *deb
+(Reading database ... 193940 files and directories currently installed.)
+Preparing to replace libtinyxml-dev 2.6.2-1 (using libtinyxml-dev_2.6.2-1_amd64.deb) ...
+Unpacking replacement libtinyxml-dev ...
+Preparing to replace libtinyxml-doc 2.6.2-1 (using libtinyxml-doc_2.6.2-1_all.deb) ...
+Unpacking replacement libtinyxml-doc ...
+Preparing to replace libtinyxml2.6.2-dbg 2.6.2-1 (using libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb) ...
+Unpacking replacement libtinyxml2.6.2-dbg ...
+Preparing to replace libtinyxml2.6.2 2.6.2-1 (using libtinyxml2.6.2_2.6.2-1_amd64.deb) ...
+Unpacking replacement libtinyxml2.6.2 ...
+Preparing to replace mysql-workbench-data 5.2.40+dfsg-2 (using mysql-workbench-data_5.2.40+dfsg-2_all.deb) ...
+Unpacking replacement mysql-workbench-data ...
+Preparing to replace mysql-workbench 5.2.40+dfsg-2 (using mysql-workbench_5.2.40+dfsg-2_amd64.deb) ...
+Unpacking replacement mysql-workbench ...
+Preparing to replace python-mysql.connector 0.3.2-1 (using python-mysql.connector_0.3.2-1_all.deb) ...
+Unpacking replacement python-mysql.connector ...
+Setting up libtinyxml-doc (2.6.2-1) ...
+Setting up libtinyxml2.6.2 (2.6.2-1) ...
+Setting up mysql-workbench-data (5.2.40+dfsg-2) ...
+Setting up python-mysql.connector (0.3.2-1) ...
+Setting up libtinyxml-dev (2.6.2-1) ...
+Setting up libtinyxml2.6.2-dbg (2.6.2-1) ...
+Processing triggers for man-db ...
+Setting up mysql-workbench (5.2.40+dfsg-2) ...
+Processing triggers for shared-mime-info ...
+Unknown media type in type 'all/all'
+
+Unknown media type in type 'all/allfiles'
+
+Unknown media type in type 'uri/mms'
+
+Unknown media type in type 'uri/mmst'
+
+Unknown media type in type 'uri/mmsu'
+
+Unknown media type in type 'uri/pnm'
+
+Unknown media type in type 'uri/rtspt'
+
+Unknown media type in type 'uri/rtspu'
+
+Unknown media type in type 'fonts/package'
+
+Unknown media type in type 'interface/x-winamp-skin'
+
+Processing triggers for menu ...
+Processing triggers for desktop-file-utils ...
+Processing triggers for gnome-menus ...
+Processing triggers for python-support ...
+jon@vriska:~/mysql-workbench$ 

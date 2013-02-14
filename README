@@ -1,0 +1,20 @@
+This runs on my system. YMMV.
+
+
+1. Make sure you're up to date, and nothing's weird:
+
+    apt-get update
+    apt-get dist-upgrade
+    dpkg -l | grep -vE '^(un|ii|rc|rn) '       # should list no packages
+
+2. Install these packages:
+
+    dpkg -i *.deb
+
+3. Tell apt to install all the dependencies they needed:
+
+    apt-get -f install
+
+That should be all.
+
+

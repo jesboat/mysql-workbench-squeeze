@@ -1,0 +1,47 @@
+Format: 1.8
+Date: Tue, 24 May 2011 17:51:42 +0200
+Source: tinyxml
+Binary: libtinyxml2.6.2 libtinyxml2.6.2-dbg libtinyxml-dev libtinyxml-doc
+Architecture: source amd64 all
+Version: 2.6.2-1
+Distribution: unstable
+Urgency: low
+Maintainer: Felix Geyer <debfx-pkg@fobos.de>
+Changed-By: Felix Geyer <debfx-pkg@fobos.de>
+Description: 
+ libtinyxml-dev - TinyXml library - header and static library
+ libtinyxml-doc - TinyXml library - documentation files
+ libtinyxml2.6.2 - C++ XML parsing library
+ libtinyxml2.6.2-dbg - TinyXml library - debug files
+Changes: 
+ tinyxml (2.6.2-1) unstable; urgency=low
+ .
+   * New upstream release.
+   * Switch to source format 3.0 (quilt).
+   * Change SONAME and package names for new upstream version.
+   * Bump Standards-Version to 3.9.2, no changes needed.
+   * Add entity-encoding.patch from upstream bugtracker.
+Checksums-Sha1: 
+ 20fc4ef7cd2d945ec034f005bb34221d878910fd 954 tinyxml_2.6.2-1.dsc
+ cba3f50dd657cb1434674a03b21394df9913d764 210124 tinyxml_2.6.2.orig.tar.gz
+ b15d389d243f3bb4e93942e673e6ce0f805584a4 4167 tinyxml_2.6.2-1.debian.tar.gz
+ 2ca34d6e46707e5e25c5cb681e0147974c9b4f7b 43970 libtinyxml2.6.2_2.6.2-1_amd64.deb
+ 958279a9907422794d8bdd9fea541a5d874a86d0 108328 libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb
+ 8361c6a89e768d285bb8e4ca48f2604039d1993f 63936 libtinyxml-dev_2.6.2-1_amd64.deb
+ f814a188309d3c44c538f987792184cf72794edb 146186 libtinyxml-doc_2.6.2-1_all.deb
+Checksums-Sha256: 
+ 6a41a644b4bed6eda4000c1be623ca771c9a23b8cab496c0dd50794490f7c5ba 954 tinyxml_2.6.2-1.dsc
+ 15bdfdcec58a7da30adc87ac2b078e4417dbe5392f3afb719f9ba6d062645593 210124 tinyxml_2.6.2.orig.tar.gz
+ 687fe2001e598bbcf7bc9bdf7882b7ae8d4a16b6e8e1c7a3b8b17bbddd32d857 4167 tinyxml_2.6.2-1.debian.tar.gz
+ 5486204f4642dba87d76bd3dd15f44ff6ee95188102aeeae3665ae95394d1ef8 43970 libtinyxml2.6.2_2.6.2-1_amd64.deb
+ 0573a5ce126ae47e510683017212cfb2d887e6b1dddf9f61b224f89f486f8628 108328 libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb
+ a02224a29a00fdb45d51c596b7fb8e9a31fcbb043845414adb1d29d323e9b40d 63936 libtinyxml-dev_2.6.2-1_amd64.deb
+ 84463d3af0c5b215da2bfdc34028ee2f8b7b522b052157d4d4239f78123b1a32 146186 libtinyxml-doc_2.6.2-1_all.deb
+Files: 
+ ce6c0349f1c630bd1e7eb2a6324250e9 954 libs optional tinyxml_2.6.2-1.dsc
+ c1b864c96804a10526540c664ade67f0 210124 libs optional tinyxml_2.6.2.orig.tar.gz
+ 3392c5f46eda27232c7ae9a482539d03 4167 libs optional tinyxml_2.6.2-1.debian.tar.gz
+ 607aa11dcfa7c9b0649b9dfbccfaf029 43970 libs optional libtinyxml2.6.2_2.6.2-1_amd64.deb
+ 28f068afc79e32348d70824574b2bc03 108328 debug extra libtinyxml2.6.2-dbg_2.6.2-1_amd64.deb
+ 6c6c0ca70fd1381fcb55d384b2773514 63936 libdevel optional libtinyxml-dev_2.6.2-1_amd64.deb
+ b3e2ea48e3ad2d5d6b5f512b6f54efc0 146186 doc extra libtinyxml-doc_2.6.2-1_all.deb

@@ -1,0 +1,32 @@
+Format: 1.8
+Date: Sat, 03 Dec 2011 15:08:34 +0100
+Source: mysql-connector-python
+Binary: python-mysql.connector
+Architecture: source all
+Version: 0.3.2-1
+Distribution: unstable
+Urgency: low
+Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Changed-By: Sandro Tosi <morph@debian.org>
+Description: 
+ python-mysql.connector - pure Python implementation of MySQL Client/Server protocol
+Closes: 650809
+Changes: 
+ mysql-connector-python (0.3.2-1) unstable; urgency=low
+ .
+   * Initial release (Closes: #650809)
+Checksums-Sha1: 
+ a6ff421442dbf994cf479bd3f3d971af1279458d 1182 mysql-connector-python_0.3.2-1.dsc
+ b7ddc4d85078ebfbdcb3cb041c70f1ebd477530f 129408 mysql-connector-python_0.3.2.orig.tar.gz
+ 9f0274fe646a38d6a95754dd8e03daf60141036a 2003 mysql-connector-python_0.3.2-1.debian.tar.gz
+ d7cbc51d42fda8de156896153aa177de12711f5e 37140 python-mysql.connector_0.3.2-1_all.deb
+Checksums-Sha256: 
+ 396443fbb908d19e20c2671c7adafef0775c9a81e40c15ea94c645e9c8814333 1182 mysql-connector-python_0.3.2-1.dsc
+ 7394f53d3158c80f9de0bacdaf68ebaefc87773dde6c6f2f56dfeacc7d8fdbeb 129408 mysql-connector-python_0.3.2.orig.tar.gz
+ 0312a15db8871d49d4b7bfe908728e10de6502926338696aed5c71eb9e8646b3 2003 mysql-connector-python_0.3.2-1.debian.tar.gz
+ 916b0b7c25a2bb2c4fcd7bf89b17910fc6ef7260e7ea4627d9058aa45f46f1a8 37140 python-mysql.connector_0.3.2-1_all.deb
+Files: 
+ 0657cc28b1e2b5cd365a5e6dd0fa1bb8 1182 python optional mysql-connector-python_0.3.2-1.dsc
+ 2ffdfa21c0a870cc7080f9f9a5ee3d87 129408 python optional mysql-connector-python_0.3.2.orig.tar.gz
+ ed3fe12fc4f3e2bcd89db5e879407b6a 2003 python optional mysql-connector-python_0.3.2-1.debian.tar.gz
+ 1d7638202d9fa5670976c57827074b54 37140 python optional python-mysql.connector_0.3.2-1_all.deb
